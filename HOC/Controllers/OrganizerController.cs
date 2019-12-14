@@ -51,41 +51,42 @@ namespace HOC.Controllers
             Microsoft.Extensions.Primitives.StringValues val1, val2;
             try
             {
-              
-                   // ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                    form.TryGetValue("ProjectName", out val1);
-                    form.TryGetValue("Description", out val2);
+                // ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                   Projects proj = new Projects();
-                    proj.CreatedBy = 1;
-                    proj.Name = val1.ToString();
-                    proj.Description = val2.ToString();
-                    proj.StartDate = DateTime.Today;
-                    proj.EndDate = DateTime.Today;
+                form.TryGetValue("ProjectName", out val1);
+                form.TryGetValue("Description", out val2);
+
+                Projects proj = new Projects();
+                proj.CreatedBy = 1;
+                proj.Name = val1.ToString();
+                proj.Description = val2.ToString();
+                proj.StartDate = DateTime.Today;
+                proj.EndDate = DateTime.Today;
                 proj.ApprovedOn = DateTime.Today;
                 proj.CreatedOn = DateTime.Today;
                 proj.ModifiedOn = DateTime.Today;
-                    proj.ModifiedBy = 1;
-                    this.context.Projects.Add(proj);
-                    this.context.SaveChanges();
-                    //proj. = 1;
-                    //HTTP POST
-                    //var postTask = client.PostAsJsonAsync<Project>("project", proj);
-                     
+                proj.ApprovedBy = 1;
+                proj.ModifiedBy = 1;
+                this.context.Projects.Add(proj);
+                this.context.SaveChanges();
+                //proj. = 1;
+                //HTTP POST
+                //var postTask = client.PostAsJsonAsync<Project>("project", proj);
 
-                    //var result = postTask.Result;
-                    //if (result.IsSuccessStatusCode)
-                    //{
-                        return RedirectToAction("Index");
-                    //}
+
+                //var result = postTask.Result;
+                //if (result.IsSuccessStatusCode)
+                //{
+                return RedirectToAction("Index");
+                //}
                 //}
 
-               
-               
-               
+
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View();
             }
