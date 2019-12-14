@@ -45,7 +45,7 @@ namespace HOC.Services.Controllers
                                            CreatedBy = r.CreatedBy,
                                            ModifiedOn = r.ModifiedOn,
                                            ModifiedBy = r.ModifiedBy,
-                                           StatusId = r.StatusId
+                                           Stage = r.Stage,
                                        })).ToList();
 
                 }
@@ -87,7 +87,7 @@ namespace HOC.Services.Controllers
                                        CreatedBy = r.CreatedBy,
                                        ModifiedOn = r.ModifiedOn,
                                        ModifiedBy = r.ModifiedBy,
-                                       StatusId = r.StatusId
+                                       Stage = r.Stage
                                    })).FirstOrDefault();
 
             }
@@ -147,7 +147,7 @@ namespace HOC.Services.Controllers
                   P1.CreatedBy = 1;
                    P1.ModifiedBy = 1;
                     P1.ModifiedOn = DateTime.Today;
-                P1.StatusId = 1;
+                P1.Stage = 0;
                 bdContext.Projects.Add(P1);
                 bdContext.SaveChanges();
 
@@ -189,7 +189,7 @@ namespace HOC.Services.Controllers
                 P1.CreatedBy = 1;
                 P1.ModifiedBy = 1;
                 P1.ModifiedOn = DateTime.Today;
-                P1.StatusId = 1;
+                P1.Stage = 0;
                 bdContext.Projects.Add(P1);
                 bdContext.SaveChanges();
                 //return CreatedAtAction("GetProjects", new { id = P1.Id }, projects);

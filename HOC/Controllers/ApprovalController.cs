@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using HOC.Models;
 using HOC.Entities.Models.DB;
 using Microsoft.EntityFrameworkCore;
+using HOC.Entities.Models;
+using HOC.BusinessService;
+using Newtonsoft.Json;
 
 namespace HOC.Controllers
 {
     public class ApprovalController : Controller
     {
         private HOCContext context;
+        private Projects currentProject;
 
         public ApprovalController(HOCContext _context)
 
@@ -26,26 +30,36 @@ namespace HOC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string projectId)
         {
+            int id = Int32.Parse(projectId);
             ViewData["Message"] = "Your application description page.";
 
-            var displayData = this.context.Projects.Select(x =>
-                new
-                {
-                    x.Id,
-                    x.Name,
-                    x.StartDate,
-                    x.EndDate,
-                    CurrentStatus = x.Status.Name
-                }).ToList();
+            currentProject = this.context.Projects.First(x => x.Id == id);
+            var data = new ApprovalProjectDisplay
+            (
+                currentProject.Name,
+                currentProject.Description,
+                currentProject.StartDate,
+                currentProject.EndDate,
+                currentProject.Stage
+            );
 
-            return new JsonResult(displayData);
+            return this.Json(data);
         }
 
-        public IActionResult Approve()
+        public IActionResult Judge(string data)
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Determine application acceptance the application";
+            var jObj = JsonConvert.DeserializeObject<JudgeObject>(data);
+            ProjectStage stage = jObj.stage;
+            UserEmailInformation emailInfo = jObj.userEmailInformation;
+
+            currentProject.Stage = stage;
+            this.context.SaveChanges();
+
+            var message = new JudgeEmailMessage(currentProject.Name, stage);
+            new EmailService(emailInfo, message);
 
             return View();
         }
