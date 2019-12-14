@@ -1,4 +1,4 @@
-namespace HOC.Entity
+namespace HOC.EF
 {
     using System;
     using System.Collections.Generic;
