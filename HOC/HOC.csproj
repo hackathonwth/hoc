@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,16 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BusinessServices\**" />
-    <Content Remove="BusinessServices\**" />
-    <EmbeddedResource Remove="BusinessServices\**" />
-    <None Remove="BusinessServices\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
+    <PackageReference Include="MailKit" Version="2.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="2.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.14" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,10 +26,13 @@ namespace HOC.Entities.Models.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer("Server=whatthehacksql.database.windows.net;Initial Catalog=HOC;Trusted_Connection=True;User ID=hackathonadmin;Password=Wh@ttheh@ck169;Integrated Security=False");
+
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=whatthehacksql.database.windows.net;Initial Catalog=HOC;Trusted_Connection=True;User ID=hackathonadmin;Password=Wh@ttheh@ck169;Integrated Security=False");
+              
             }
         }
 
