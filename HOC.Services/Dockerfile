@@ -8,16 +8,16 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk-nanoserver-sac2016 AS build
 WORKDIR /src
-COPY ["HOC.Ent/HOC.Ent.csproj", "HOC.Ent/"]
-RUN dotnet restore "HOC.Ent/HOC.Ent.csproj"
+COPY ["HOC.Services/HOC.Services.csproj", "HOC.Services/"]
+RUN dotnet restore "HOC.Services/HOC.Services.csproj"
 COPY . .
-WORKDIR "/src/HOC.Ent"
-RUN dotnet build "HOC.Ent.csproj" -c Release -o /app
+WORKDIR "/src/HOC.Services"
+RUN dotnet build "HOC.Services.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "HOC.Ent.csproj" -c Release -o /app
+RUN dotnet publish "HOC.Services.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "HOC.Ent.dll"]
+ENTRYPOINT ["dotnet", "HOC.Services.dll"]
