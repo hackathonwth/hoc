@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOC.Test", "HAC.Test\HOC.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOC.API", "HOC.API\HOC.API.csproj", "{1B4078EC-0F97-476C-B70A-1CC982B48FD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOC.EntityModel", "HOC.EntityModel\HOC.EntityModel.csproj", "{1DE3F84F-E2F9-4752-8EA0-993B65C2378F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1B4078EC-0F97-476C-B70A-1CC982B48FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4078EC-0F97-476C-B70A-1CC982B48FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B4078EC-0F97-476C-B70A-1CC982B48FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE3F84F-E2F9-4752-8EA0-993B65C2378F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE3F84F-E2F9-4752-8EA0-993B65C2378F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE3F84F-E2F9-4752-8EA0-993B65C2378F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE3F84F-E2F9-4752-8EA0-993B65C2378F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
