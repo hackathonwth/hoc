@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace HOC.Entities.Models.DB
 {
     public partial class Projects
     {
         public int Id { get; set; }
+
+        [DisplayName("Project Name")]
+        [Required(ErrorMessage = "Project Name is required.")]
         public string Name { get; set; }
+
+        [DisplayName("Description")]
+        [Required(ErrorMessage = "Description is required.")]
         public string Description { get; set; }
         public bool Approved { get; set; }
         public DateTime ApprovedOn { get; set; }

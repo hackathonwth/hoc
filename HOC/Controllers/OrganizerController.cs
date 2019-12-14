@@ -4,11 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
+using HOC.EF;
+using System.Net.Http;
 
 namespace HOC.Controllers
 {
     public class OrganizerController : Controller
     {
+        int userID = 1;
+
+        public OrganizerController()
+        {
+            //userID = GetFromSession
+        }
+
         // GET: Organizer
         public ActionResult Index()
         {
@@ -30,13 +40,44 @@ namespace HOC.Controllers
         // POST: Organizer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        //public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(IFormCollection form)
         {
+            Microsoft.Extensions.Primitives.StringValues val1, val2;
             try
             {
-                // TODO: Add insert logic here
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://HOCAPI.AzureWebsites.net/api/Create");
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                return RedirectToAction(nameof(Index));
+                    form.TryGetValue("ProjectName", out val1);
+                    form.TryGetValue("Description", out val2);
+
+                    Project proj = new Project();
+                    proj.CreatedBy = 1;
+                    proj.Name = val1.ToString();
+                    proj.Description = val2.ToString();
+                    proj.StartDate = DateTime.Today;
+                    proj.EndDate = DateTime.Today;
+                    proj.ModifiedBy = 1;
+                    //proj. = 1;
+                    //HTTP POST
+                    //var postTask = client.PostAsJsonAsync<Project>("project", proj);
+                    var postTask = client.PostAsJsonAsync<Project>("project", proj);
+
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+
+               
+               
+                return RedirectToAction("Create");
             }
             catch
             {
@@ -88,6 +129,18 @@ namespace HOC.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ProjectDetails(int projId)
+        {
+
+            return View();
+        }
+
+        public ActionResult MyProjects()
+        {
+
+            return View();
         }
     }
 }

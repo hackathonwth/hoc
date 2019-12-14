@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace HOC.Models
 {
@@ -54,7 +55,12 @@ namespace HOC.Models
         public string OrganizerLName { get; set; }
         public string ApproverFName { get; set; }
         public string ApproverLName { get; set; }
+
+        [Required(ErrorMessage = "Project Name is required.")]
+        [StringLength(50)]
         public string ProjectName { get; set; }
+
+        [Required(ErrorMessage = "Description is required.")]
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime SubmitDate { get; set; }
