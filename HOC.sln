@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HOC.API", "HOC.API\HOC.API.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HOC.EF", "HOC.EF\HOC.EF.csproj", "{5BC1D333-DD64-4DA3-8EF3-AAA72466DB8E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HOC.Entities", "HOC.Entities\HOC.Entities.csproj", "{D1642842-2F2A-410C-8C74-FB8EAEAB96D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HOC.Services", "HOC.Services\HOC.Services.csproj", "{510E7747-DBC2-4D0D-B5D9-8BF755E72D95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5BC1D333-DD64-4DA3-8EF3-AAA72466DB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BC1D333-DD64-4DA3-8EF3-AAA72466DB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BC1D333-DD64-4DA3-8EF3-AAA72466DB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1642842-2F2A-410C-8C74-FB8EAEAB96D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1642842-2F2A-410C-8C74-FB8EAEAB96D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1642842-2F2A-410C-8C74-FB8EAEAB96D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1642842-2F2A-410C-8C74-FB8EAEAB96D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{510E7747-DBC2-4D0D-B5D9-8BF755E72D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{510E7747-DBC2-4D0D-B5D9-8BF755E72D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510E7747-DBC2-4D0D-B5D9-8BF755E72D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{510E7747-DBC2-4D0D-B5D9-8BF755E72D95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

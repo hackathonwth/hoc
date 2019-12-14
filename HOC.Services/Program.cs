@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace HOC
+namespace HOC.Services
 {
     public class Program
     {
@@ -19,6 +19,6 @@ namespace HOC
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>(); 
+                .UseStartup<Startup>();
     }
 }
