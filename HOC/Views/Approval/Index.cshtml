@@ -3,6 +3,7 @@
     ViewData["Title"] = "Create a New Project";
     Layout = "~/Views/Shared/_Layout.cshtml";
     
+    
 }
 <link type="text/css" rel="stylesheet" href="~/css/Site.css" />
 <script>
@@ -37,9 +38,9 @@
                         <tr>
                             <td></td>
                             <td style="height:60px;">
-                                <button type="button" class="btn btn-primary" value="Approve" onclick="javascript: return Validate();">Approve</button>
-                                <button type="button" class="btn btn-primary" value="Reject" onclick="javascript: return Validate();">Reject</button>
-                                <button type="button" class="btn btn-primary" value="Return" onclick="javascript: return Validate();">Return</button>
+                                <input type="button" class="btn btn-primary" value="Approve" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "3" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                                <input type="button" class="btn btn-primary" value="Reject" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "2" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                                <input type="button" class="btn btn-primary" value="Return" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "1" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
                             </td>
                         </tr>
                     </table>
