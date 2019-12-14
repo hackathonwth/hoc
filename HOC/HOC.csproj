@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="BusinessServices\" />
+    <Folder Include="css\" />
+    <Folder Include="js\" />
   </ItemGroup>
 
   <ItemGroup>
