@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HOC.Services
 {
@@ -31,12 +32,21 @@ namespace HOC.Services
 
             services.AddDbContext<HOCContext>();
             services.AddScoped<Microsoft.EntityFrameworkCore.DbContext>(sp => sp.GetService<HOCContext>());
-        // Container = services.BuildServiceProvider(); //container is a global variable。
+            // Container = services.BuildServiceProvider(); //container is a global variable。
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "HOC API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HOC API");
+            //});
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,7 +55,15 @@ namespace HOC.Services
             {
                 app.UseHsts();
             }
+            // Enable Swagger middleware 
+            app.UseSwagger();
 
+            // specify the Swagger JSON endpoint.
+            app.UseSwaggerUI(s => {
+                s.RoutePrefix = "help";
+                s.SwaggerEndpoint("../swagger/v1/swagger.json", "MySite");
+                s.InjectStylesheet("../css/swagger.min.css");
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }
