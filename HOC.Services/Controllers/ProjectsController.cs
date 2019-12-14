@@ -22,20 +22,31 @@ namespace HOC.Services.Controllers
 
         // GET: api/Projects
         [HttpGet]
-        public IEnumerable<Projects> GetProjects()
+        public IList<Projects> GetProjects()
         {
             try
             {
                 List<Projects>  projects = new List<Projects>();
-               
+
                 using (var bdContext = new HOCContext())
                 {
                     return projects = (from r in bdContext.Projects
-                                    select (new Projects
-                                    {
-                                        
-                                        Name = r.Name
-                                    })).ToList();
+                                       select (new Projects
+                                       {
+                                           Id = r.Id,
+                                           Name = r.Name,
+                                           Description = r.Description,
+                                           Approved = r.Approved,
+                                           ApprovedOn = r.ApprovedOn,
+                                           ApprovedBy = r.ApprovedBy,
+                                           StartDate = r.StartDate,
+                                           EndDate = r.EndDate,
+                                           CreatedOn = r.CreatedOn,
+                                           CreatedBy = r.CreatedBy,
+                                           ModifiedOn = r.ModifiedOn,
+                                           ModifiedBy = r.ModifiedBy,
+                                           StatusId = r.StatusId
+                                       })).ToList();
 
                 }
                // return projects;
@@ -48,21 +59,40 @@ namespace HOC.Services.Controllers
 
         // GET: api/Projects/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProjects([FromRoute] int id)
+        public Projects GetProjects([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            //var projects = await _context.Projects.FindAsync(id);
+            Projects project  = new  Projects();
+
+            using (var bdContext = new HOCContext())
             {
-                return BadRequest(ModelState);
+                return project = (from r in bdContext.Projects
+                                  where r.Id == id
+                                  select (new Projects
+                                   {
+                                       Id = r.Id,
+                                       Name = r.Name,
+                                       Description = r.Description,
+                                       Approved = r.Approved,
+                                       ApprovedOn = r.ApprovedOn,
+                                       ApprovedBy = r.ApprovedBy,
+                                       StartDate = r.StartDate,
+                                       EndDate = r.EndDate,
+                                       CreatedOn = r.CreatedOn,
+                                       CreatedBy = r.CreatedBy,
+                                       ModifiedOn = r.ModifiedOn,
+                                       ModifiedBy = r.ModifiedBy,
+                                       StatusId = r.StatusId
+                                   })).FirstOrDefault();
+
             }
 
-            var projects = await _context.Projects.FindAsync(id);
-
-            if (projects == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(projects);
+           
         }
 
         // PUT: api/Projects/5
@@ -108,8 +138,21 @@ namespace HOC.Services.Controllers
             {
                 return BadRequest(ModelState);
             }
+            using (var bdContext = new HOCContext())
+            { 
+                _context.Projects.Add(projects);
+                Projects P1 = new Projects();
+                 P1.Name = "Test2";
+                P1.Description = "Description";
+                  P1.CreatedBy = 1;
+                   P1.ModifiedBy = 1;
+                    P1.ModifiedOn = DateTime.Today;
+                P1.StatusId = 1;
+                bdContext.Projects.Add(P1);
+                bdContext.SaveChanges();
 
-            _context.Projects.Add(projects);
+
+            }
             try
             {
                 await _context.SaveChangesAsync();
@@ -127,6 +170,38 @@ namespace HOC.Services.Controllers
             }
 
             return CreatedAtAction("GetProjects", new { id = projects.Id }, projects);
+        }
+
+        [HttpPost]
+        public  void SaveProject()
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            try { 
+            using (var bdContext = new HOCContext())
+            {
+                //_context.Projects.Add(projects);
+                Projects P1 = new Projects();
+                P1.Name = "Test2";
+                P1.Description = "Description";
+                P1.CreatedBy = 1;
+                P1.ModifiedBy = 1;
+                P1.ModifiedOn = DateTime.Today;
+                P1.StatusId = 1;
+                bdContext.Projects.Add(P1);
+                bdContext.SaveChanges();
+                //return CreatedAtAction("GetProjects", new { id = P1.Id }, projects);
+
+            }
+            } catch(Exception ex)
+            {
+
+            }
+
+
+
         }
 
         // DELETE: api/Projects/5
