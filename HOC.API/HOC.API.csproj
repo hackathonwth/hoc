@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HOC.EF\HOC.EF.csproj" />
+    <ProjectReference Include="..\HOC.Entities\HOC.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,22 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BusinessServices\EmailService.cs" />
+    <Compile Remove="BusinessServices\**" />
+    <Content Remove="BusinessServices\**" />
+    <EmbeddedResource Remove="BusinessServices\**" />
+    <None Remove="BusinessServices\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessServices\" />
     <Folder Include="css\" />
     <Folder Include="js\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HOC.EF\HOC.EF.csproj" />
+    <ProjectReference Include="..\HOC.Entities\HOC.Entities.csproj" />
   </ItemGroup>
 
 </Project>

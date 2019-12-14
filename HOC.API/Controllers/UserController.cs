@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HOC.Entities.Models.DB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using HOC.EF;
+
 namespace HOC.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly HOC _context;
+        private readonly HOCContext _context;
 
-        public ProjectsController(HOCContext context)
+        public UserController(HOCContext context)
         {
             _context = context;
         }
@@ -42,7 +43,7 @@ namespace HOC.API.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
-            using(dbContext= new HOC())
+            
         }
 
         // PUT: api/User/5
