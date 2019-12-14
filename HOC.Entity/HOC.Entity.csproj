@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{779CBD39-D2A5-4FA6-B6B6-903DF5A523CF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HOC.Entity</RootNamespace>
+    <AssemblyName>HOC.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="HOCModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HOCModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HOCModel.edmx.diagram">
+      <DependentUpon>HOCModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HOCModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOCModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOCModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOCModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOCModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectAudit.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectStatu.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow.cs">
+      <DependentUpon>HOCModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HOCModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HOCModel.edmx</DependentUpon>
+      <LastGenOutput>HOCModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HOCModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HOCModel.edmx</DependentUpon>
+      <LastGenOutput>HOCModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\Custom\" />
+    <Folder Include="Context\Generated\" />
+    <Folder Include="Entities\Custom\" />
+    <Folder Include="Entities\Generated\" />
+    <Folder Include="Enums\Custom\" />
+    <Folder Include="Enums\Generated\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
