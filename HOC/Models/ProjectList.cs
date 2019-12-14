@@ -22,21 +22,25 @@ namespace HOC.Models
 
         public bool GetProjects(int organizerID)
         {
+            List<sProjectInfo> plist = new List<sProjectInfo>();
+
             //if (DBObj.GetProjects(organizerID, out List<sProjectInfo> plist))
             {
                 //FillProjectListData
 
-                return true;
+                pList.Clear();
+
+                foreach (sProjectInfo p in plist)
+                {
+                    pList.Add(p);
+                }
+
+                //return true;
             }
 
             return false;
         }
 
-        void FillProjectListData()
-        {
-
-
-        }
-
+        
     }
 }
