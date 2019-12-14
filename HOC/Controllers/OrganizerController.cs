@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
-using System.Net.Http;
+using HOC.Models;
 using HOC.Entities.Models.DB;
+using System.Net.Http;
 
 namespace HOC.Controllers
 {
@@ -14,9 +15,13 @@ namespace HOC.Controllers
     {
         int userID = 1;
 
-        public OrganizerController()
+        private HOCContext context;
+
+        public OrganizerController(HOCContext _context)
+
         {
-            //userID = GetFromSession
+            this.context = _context;
+
         }
 
         // GET: Organizer
@@ -46,40 +51,42 @@ namespace HOC.Controllers
             Microsoft.Extensions.Primitives.StringValues val1, val2;
             try
             {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri("https://HOCAPI.AzureWebsites.net/api/Create");
-                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                    form.TryGetValue("ProjectName", out val1);
-                    form.TryGetValue("Description", out val2);
+                // ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-                    Projects proj = new Projects();
-                    proj.CreatedBy = 1;
-                    proj.Name = val1.ToString();
-                    proj.Description = val2.ToString();
-                    proj.StartDate = DateTime.Today;
-                    proj.EndDate = DateTime.Today;
-                    proj.ModifiedBy = 1;
-                    //proj. = 1;
-                    //HTTP POST
-                    //var postTask = client.PostAsJsonAsync<Project>("project", proj);
-                    var postTask = client.PostAsJsonAsync<Projects>("project", proj);
+                form.TryGetValue("ProjectName", out val1);
+                form.TryGetValue("Description", out val2);
 
-                    postTask.Wait();
+                Projects proj = new Projects();
+                proj.CreatedBy = 1;
+                proj.Name = val1.ToString();
+                proj.Description = val2.ToString();
+                proj.StartDate = DateTime.Today;
+                proj.EndDate = DateTime.Today;
+                proj.ApprovedOn = DateTime.Today;
+                proj.CreatedOn = DateTime.Today;
+                proj.ModifiedOn = DateTime.Today;
+                proj.ApprovedBy = 1;
+                proj.ModifiedBy = 1;
+                this.context.Projects.Add(proj);
+                this.context.SaveChanges();
+                //proj. = 1;
+                //HTTP POST
+                //var postTask = client.PostAsJsonAsync<Project>("project", proj);
 
-                    var result = postTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
 
-               
-               
-                return RedirectToAction("Create");
+                //var result = postTask.Result;
+                //if (result.IsSuccessStatusCode)
+                //{
+                return RedirectToAction("Index");
+                //}
+                //}
+
+
+
+
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

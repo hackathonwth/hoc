@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HOC.Entities.Models.DB
 {
     public partial class Projects
     {
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None), Key]
         public int Id { get; set; }
 
         [DisplayName("Project Name")]

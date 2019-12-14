@@ -42,7 +42,7 @@ namespace HOC.Entities.Models.DB
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ApprovedOn).HasColumnType("datetime");
 
