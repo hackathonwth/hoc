@@ -52,6 +52,8 @@ namespace HOC.Models
         public string StatusName { get; set; }
         public string OrganizerFName { get; set; }
         public string OrganizerLName { get; set; }
+        public string ApproverFName { get; set; }
+        public string ApproverLName { get; set; }
         public string ProjectName { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }

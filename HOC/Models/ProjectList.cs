@@ -41,11 +41,11 @@ namespace HOC.Models
             return false;
         }
 
-        public bool GetProjects(int organizerID, int statusID)
+        public bool GetProjects(int userID, int statusID)
         {
             List<sProjectInfo> plist = new List<sProjectInfo>();
 
-            //if (DBObj.GetProjects(organizerID, statusID, out List<sProjectInfo> plist))
+            //if (DBObj.GetProjects(userID, statusID, out List<sProjectInfo> plist))
             {
                 //FillProjectListData
 
@@ -61,6 +61,7 @@ namespace HOC.Models
 
             return false;
         }
+
 
         public bool GetProjects(DateTime start, DateTime end)
         {

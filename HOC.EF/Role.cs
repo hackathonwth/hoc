@@ -1,4 +1,4 @@
-namespace HOC.Entity
+namespace HOC.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,24 +6,24 @@ namespace HOC.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class ProjectStatu
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProjectStatu()
+        public Role()
         {
-            Projects = new HashSet<Project>();
+            UserRoles = new HashSet<UserRole>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public bool Active { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -2,11 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>141c3aad-f9c2-41c3-a53c-b05d5c97d857</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BusinessServices\EmailService.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BusinessServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HOC.EF\HOC.EF.csproj" />
   </ItemGroup>
 
 </Project>
