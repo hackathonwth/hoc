@@ -5,26 +5,45 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HOC.Models;
+using HOC.Entities.Models.DB;
+using Microsoft.EntityFrameworkCore;
 
 namespace HOC.Controllers
 {
     public class ApprovalController : Controller
     {
+        private HOCContext context;
+
+        public ApprovalController(HOCContext _context)
+
+        {
+            this.context = _context;
+            
+        }
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Get()
         {
             ViewData["Message"] = "Your application description page.";
 
+            var displayData = this.context.Projects.Select(x =>
+                new
+                {
+                    x.Id,
+                    x.Name,
+                    x.StartDate,
+                    x.EndDate,
+                    CurrentStatus = x.Status.Name
+                }).ToList();
 
-
-            return View();
+            return new JsonResult(displayData);
         }
 
-        public IActionResult Contact()
+        public IActionResult Approve()
         {
             ViewData["Message"] = "Your contact page.";
 
