@@ -3,6 +3,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Security;
+using HOC.Models;
 
 namespace HOC.BusinessService
 {
@@ -11,14 +12,14 @@ namespace HOC.BusinessService
         private readonly string emailAddress;
         private readonly string name;
         private readonly string subject;
-        private readonly string bodyMessage;
+        private readonly string messageBody;
 
-        public EmailService(string emailAddress, string name, string subject, string bodyMessage)
+        public EmailService(UserEmailInformation emailInfo, IEmailMessage messageInfo)
         {
-            this.emailAddress = emailAddress;
-            this.name = name;
-            this.subject = subject;
-            this.bodyMessage = bodyMessage;
+            this.emailAddress = emailInfo.emailAddress;
+            this.name = emailInfo.name;
+            this.subject = messageInfo.subject;
+            this.messageBody = messageInfo.messageBody;
         }
 
         public void Send()
@@ -30,7 +31,7 @@ namespace HOC.BusinessService
 
             message.Body = new TextPart("plain")
             {
-                Text = bodyMessage
+                Text = messageBody
             };
 
             using (var client = new SmtpClient())

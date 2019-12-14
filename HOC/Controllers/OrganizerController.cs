@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
-using HOC.EF;
 using System.Net.Http;
+using HOC.Entities.Models.DB;
 
 namespace HOC.Controllers
 {
@@ -54,7 +54,7 @@ namespace HOC.Controllers
                     form.TryGetValue("ProjectName", out val1);
                     form.TryGetValue("Description", out val2);
 
-                    Project proj = new Project();
+                    Projects proj = new Projects();
                     proj.CreatedBy = 1;
                     proj.Name = val1.ToString();
                     proj.Description = val2.ToString();
@@ -64,7 +64,7 @@ namespace HOC.Controllers
                     //proj. = 1;
                     //HTTP POST
                     //var postTask = client.PostAsJsonAsync<Project>("project", proj);
-                    var postTask = client.PostAsJsonAsync<Project>("project", proj);
+                    var postTask = client.PostAsJsonAsync<Projects>("project", proj);
 
                     postTask.Wait();
 

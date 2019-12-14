@@ -63,7 +63,7 @@ namespace HOC.Entities.Models.DB
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-                entity.Property(e => e.StatusId).HasColumnName("StatusID");
+                entity.Property(e => e.Stage).HasColumnName("Stage");
 
                 entity.HasOne(d => d.ApprovedByNavigation)
                     .WithMany(p => p.ProjectsApprovedByNavigation)
@@ -83,27 +83,27 @@ namespace HOC.Entities.Models.DB
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Projects_Modified");
 
-                entity.HasOne(d => d.Status)
-                    .WithMany(p => p.Projects)
-                    .HasForeignKey(d => d.StatusId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Projects_Status");
+                //entity.HasOne(d => d.Status)
+                //    .WithMany(p => p.Projects)
+                //    .HasForeignKey(d => d.StatusId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Projects_Status");
             });
 
-            modelBuilder.Entity<ProjectStatus>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+            //modelBuilder.Entity<ProjectStatus>(entity =>
+            //{
+            //    entity.Property(e => e.Id)
+            //        .HasColumnName("ID")
+            //        .ValueGeneratedNever();
 
-                entity.Property(e => e.Active)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
+            //    entity.Property(e => e.Active)
+            //        .IsRequired()
+            //        .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(255);
-            });
+            //    entity.Property(e => e.Name)
+            //        .IsRequired()
+            //        .HasMaxLength(255);
+            //});
 
             modelBuilder.Entity<Roles>(entity =>
             {

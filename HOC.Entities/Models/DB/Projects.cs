@@ -27,11 +27,11 @@ namespace HOC.Entities.Models.DB
         public int CreatedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public int ModifiedBy { get; set; }
-        public int StatusId { get; set; }
+        public ProjectStage Stage { get; set; }
+
 
         public Users ApprovedByNavigation { get; set; }
         public Users CreatedByNavigation { get; set; }
         public Users ModifiedByNavigation { get; set; }
-        public ProjectStatus Status { get; set; }
     }
 }
