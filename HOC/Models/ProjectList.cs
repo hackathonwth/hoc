@@ -41,6 +41,69 @@ namespace HOC.Models
             return false;
         }
 
-        
+        public bool GetProjects(int organizerID, int statusID)
+        {
+            List<sProjectInfo> plist = new List<sProjectInfo>();
+
+            //if (DBObj.GetProjects(organizerID, statusID, out List<sProjectInfo> plist))
+            {
+                //FillProjectListData
+
+                pList.Clear();
+
+                foreach (sProjectInfo p in plist)
+                {
+                    pList.Add(p);
+                }
+
+                //return true;
+            }
+
+            return false;
+        }
+
+        public bool GetProjects(DateTime start, DateTime end)
+        {
+            List<sProjectInfo> plist = new List<sProjectInfo>();
+
+            //if (DBObj.GetProjects(start, start, out List<sProjectInfo> plist))
+            {
+                //FillProjectListData
+
+                pList.Clear();
+
+                foreach (sProjectInfo p in plist)
+                {
+                    pList.Add(p);
+                }
+
+                //return true;
+            }
+
+            return false;
+        }
+
+        public bool PublicProjects()
+        {
+            List<sProjectInfo> plist = new List<sProjectInfo>();
+            
+            //if (DBObj.GetProjects(0, (int)eStatus.Approved))
+            {
+                //FillProjectListData
+
+                pList.Clear();
+
+                foreach (sProjectInfo p in plist)
+                {
+                    pList.Add(p);
+                }
+
+                //return true;
+            }
+
+            return false;
+        }
+
+
     }
 }
