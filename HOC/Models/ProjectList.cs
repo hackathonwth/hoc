@@ -62,6 +62,7 @@ namespace HOC.Models
             return false;
         }
 
+
         public bool GetProjects(DateTime start, DateTime end)
         {
             List<sProjectInfo> plist = new List<sProjectInfo>();
