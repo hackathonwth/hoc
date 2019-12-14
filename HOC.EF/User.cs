@@ -17,6 +17,9 @@ namespace HOC.EF
             UserRoles = new HashSet<UserRole>();
         }
 
+
+   
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UID { get; set; }
