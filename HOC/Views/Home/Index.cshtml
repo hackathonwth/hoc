@@ -2,6 +2,66 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!-- google sign-in button -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<!-- google sign-out button -->
+<!-- <a href="#" onclick="signOut();"> Sign out of Google Login </a> -->
+<script>function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function() {
+                    console.log('User signed out.');
+                });
+            }</script>
+<!-- amazon sdk js files -->
+<div id="amazon-root"></div>
+<script type="text/javascript">window.onAmazonLoginReady = function() {
+                amazon.Login.setClientID('amzn1.application-oa2-client.fc7ecc78f2fe460da59c26e781b596d4');
+
+            };
+            (function(d) {
+                var a = d.createElement('script'); a.type = 'text/javascript';
+                a.async = true; a.id = 'amazon-login-sdk';
+                a.src = 'https://assets.loginwithamazon.com/sdk/na/login1.js';
+                d.getElementById('amazon-root').appendChild(a);
+            })(document);</script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=440939906589350&autoLogAppEvents=1"></script>
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+<span id="cwppButton"></span>
+<script src='https://www.paypalobjects.com/js/external/connect/api.js'></script>
+<script>paypal.use( ['login'], function (login) {
+               login.render ({
+
+                   "appid": "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0mnc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutIW5R9T",
+                   "scopes": "openid",
+                   "containerid": "cwppButton",
+                   "responseType": "code",
+                   "locale" : "en-us",
+                   "buttonShape" : "pill",
+                   "buttonSize" : "lg",
+                   "fullPage" : "true",
+
+                   "returnurl" : "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0nmc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutIW5R9T"
+               });
+               });</script>
+       
+<a href id="LoginWithAmazon">
+    <img border="0" alt="Login with Amazon"
+         src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png" width="156" height="32" />
+</a>
+<!-- AuthorizeRequest object after Amazon button -->
+<script type="text/javascript">document.getElementById('LoginWithAmazon').onclick = function() {
+               options = {}
+               options.scope = 'profile';
+               options.scope_data = {
+                   'profile' : {'essential' : false}
+
+               };
+               amazon.Login.authorize(options,
+               'https://hoc.azurewebsites.net');
+               return false;
+           };</script>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
