@@ -1,0 +1,53 @@
+﻿@model HOC.Models.ApprovalProjectDisplay
+@{
+    ViewData["Title"] = "Create a New Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    
+}
+<link type="text/css" rel="stylesheet" href="~/css/Site.css" />
+<script>
+    function Validate() {
+
+        document.forms[0].submit();
+        return true;
+    }
+</script>
+<h2>Approve a Research Project</h2>
+@using (Html.BeginForm("Get", "Approval", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div id="divForm">
+        <table id="tbContainer" style="width:100%">
+            <tr>
+                <td style="text-align:left; margin-left:20px">
+                    <table class="datatable" style="border-width:3px">
+                        <tr>
+                            <td style="font-weight:bold;height:40px; padding-right:10px">Project Name: </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "regtext", @style = "width:400px" })
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:bold">Description: </td>
+                            <td>
+                                @Html.TextAreaFor(m => m.Description, new { @style = "width:400px;height:150px" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="height:60px;">
+                                <input type="button" class="btn btn-primary" value="Approve" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "3" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                                <input type="button" class="btn btn-primary" value="Reject" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "2" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                                <input type="button" class="btn btn-primary" value="Return" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "1" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+}

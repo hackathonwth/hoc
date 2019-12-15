@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using HOC.Models;
 using HOC.Entities.Models.DB;
 using Microsoft.EntityFrameworkCore;
+using HOC.Entities.Models;
+using HOC.BusinessService;
+using Newtonsoft.Json;
 
 namespace HOC.Controllers
 {
@@ -20,32 +23,57 @@ namespace HOC.Controllers
             this.context = _context;
             
         }
-        public IActionResult Index()
+        public IActionResult Index(string projectId)
         {
-            return View();
+            int id = Int32.Parse(projectId);
+            var currentProject = this.context.Projects.First(x => x.Id == id);
+            var data = new ApprovalProjectDisplay
+                (
+                    currentProject.Name,
+                    currentProject.Description,
+                    currentProject.StartDate,
+                    currentProject.EndDate,
+                    currentProject.Stage
+                );
+            ViewBag.Id = projectId;
+            return View(data);
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string projectId)
         {
+            int id = Int32.Parse(projectId);
+            var currentProject = this.context.Projects.First(x => x.Id == id);
             ViewData["Message"] = "Your application description page.";
 
-            var displayData = this.context.Projects.Select(x =>
-                new
-                {
-                    x.Id,
-                    x.Name,
-                    x.StartDate,
-                    x.EndDate,
-                    CurrentStatus = x.Status.Name
-                }).ToList();
+            var data = new ApprovalProjectDisplay
+            (
+                currentProject.Name,
+                currentProject.Description,
+                currentProject.StartDate,
+                currentProject.EndDate,
+                currentProject.Stage
+            );
 
-            return new JsonResult(displayData);
+            return this.Json(data);
         }
 
-        public IActionResult Approve()
+        public IActionResult Judge(string projectId, string stage, string emailAddress, string name)
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Determine application acceptance the application";
+            //var jObj = JsonConvert.DeserializeObject<JudgeObject>(data);
+            int stg = Int32.Parse(stage);
+            ProjectStage projectStage = (ProjectStage)stg;
+            //UserEmailInformation emailInfo = jObj.userEmailInformation;
+            UserEmailInformation emailInfo = new UserEmailInformation(emailAddress, name);
+
+            int id = Int32.Parse(projectId);
+            var currentProject = this.context.Projects.First(x => x.Id == id);
+            currentProject.Stage = projectStage;
+            this.context.SaveChanges();
+
+            var message = new JudgeEmailMessage(currentProject.Name, projectStage);
+            new EmailService(emailInfo, message);
 
             return View();
         }
