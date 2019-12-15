@@ -15,12 +15,12 @@ function ltrim(txt_val) {
     var bflag = false;
     var ntxt_val = "";
     var k = 0;
-    if (txt_val.length == 0) return ntxt_val;
+    if (txt_val.length === 0) return ntxt_val;
     for (k = 0; k < txt_val.length; k++) {
-        if (txt_val.charAt(k) != ' ') break;
+        if (txt_val.charAt(k) !== ' ') break;
     }
     //if txt_val lenght is 1 and if it is ok
-    if (txt_val.length == 1) k = 0;
+    if (txt_val.length === 1) k = 0;
     for (; k < txt_val.length; k++) {
         ntxt_val = ntxt_val + txt_val.charAt(k);
     }
@@ -32,11 +32,11 @@ function rtrim(txt_val) {
     var bflag = false;
     var ntxt_val = "";
     var k = 0;
-    if (txt_val.length == 0) return ntxt_val;
+    if (txt_val.length === 0) return ntxt_val;
     for (k = txt_val.length - 1; k > -1; k--) {
-        if (txt_val.charAt(k) != ' ') break;
+        if (txt_val.charAt(k) !== ' ') break;
     }
-    if (txt_val.length == 1) k = txt_val.length;
+    if (txt_val.length === 1) k = txt_val.length;
     for (p = 0; p < (k + 1) ; p++) {
         ntxt_val = ntxt_val + txt_val.charAt(p);
     }
@@ -49,15 +49,15 @@ function isUSDate(txt_month, txt_day, txt_year) {
     var d = txt_day;
     var m = txt_month;
     var y = txt_year;
-    if (d == 0 || m == 0 || y == 0)
+    if (d === 0 || m === 0 || y === 0)
         return false;
     if (m > 12) return false;
-    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+    if (m === 1 || m === 3 || m === 5 || m === 7 || m === 8 || m === 10 || m === 12)
         var dmax = 31;
     else
-        if (m == 4 || m == 6 || m == 9 || m == 11) dmax = 30;
+        if (m === 4 || m === 6 || m === 9 || m === 11) dmax = 30;
         else
-            if ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0)) dmax = 29;
+            if ((y % 400 === 0) || (y % 4 === 0 && y % 100 !== 0)) dmax = 29;
             else dmax = 28;
 
     if (d > dmax) return false;
@@ -136,7 +136,7 @@ function isDecimal(txt_val) {
     if (isEmpty(txt_val, num_minlength)) return false;
     for (k = 0; k < txt_val.length; k++) {
         if (isNaN(txt_val.charAt(k))) {
-            if (txt_val.charAt(k) == '.') {
+            if (txt_val.charAt(k) === '.') {
                 d++;
                 if (d > 1) return false;
             }
@@ -157,7 +157,7 @@ function NumberOfDays(month, year) {
             else
                 n = 28;
         }
-        else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+        else if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12)
             n = 31
         else
             n = 30;
@@ -168,7 +168,7 @@ function NumberOfDays(month, year) {
 
 function IsLeapYear(year) {
     var r = year % 4;
-    if (r == 0)
+    if (r === 0)
         return (true);
     else
         return (false);
@@ -176,7 +176,7 @@ function IsLeapYear(year) {
 
 function isValidateEmail(email) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (reg.test(email) == false) {
+    if (reg.test(email) === false) {
         return false;
     }
     return true;
@@ -185,7 +185,7 @@ function isValidateEmail(email) {
 
 function isValidPhoneNumber(phone) {
     var reg = /^[+1]?|(\([2-9]\d{2}\)|[2-9]\d{2})[- .]?\d{3}[- .]?\d{4}$/;
-    if (reg.test(phone) == false)
+    if (reg.test(phone) === false)
         return false;
     return true;
 }
