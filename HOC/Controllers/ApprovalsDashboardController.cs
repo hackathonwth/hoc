@@ -16,6 +16,7 @@ namespace HOC.Controllers
 
         public ApprovalsDashboardController(HOCContext context)
         {
+
             _context = context;
         }
         // GET: /<controller>/

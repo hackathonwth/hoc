@@ -40,10 +40,10 @@ namespace HOC.BusinessService
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTlsWhenAvailable);
-
+                var connected = client.IsConnected;
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate("WhatTheHackLCG", "LCGHackathon");
-
+                client.Authenticate("WhatTheHackLCG@gmail.com", "LCGhackathon");
+                var authenticated = client.IsAuthenticated;
                 client.Send(message);
                 client.Disconnect(true);
             }

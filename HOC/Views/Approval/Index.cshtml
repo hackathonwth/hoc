@@ -38,9 +38,9 @@
                         <tr>
                             <td></td>
                             <td style="height:60px;">
-                                <input type="button" class="btn btn-primary" value="Approve" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "3" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
-                                <input type="button" class="btn btn-primary" value="Reject" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "2" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
-                                <input type="button" class="btn btn-primary" value="Return" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "1" , emailAddress = "kellisum@gmail.com", name = "Kelli" } )'" />
+                                <input type="button" class="btn btn-primary" value="Approve" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "3" , emailAddress = ViewBag.EmailAddress, name = ViewBag.UsersName } )'" />
+                                <input type="button" class="btn btn-primary" value="Reject" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "2" , emailAddress = ViewBag.EmailAddress, name = ViewBag.UsersName } )'" />
+                                <input type="button" class="btn btn-primary" value="Return" onclick="location.href='@Url.Action("Judge", "Approval", new { projectId = ViewBag.id, Stage = "1" , emailAddress = ViewBag.EmailAddress, name = ViewBag.UsersName } )'" />
                             </td>
                         </tr>
                     </table>

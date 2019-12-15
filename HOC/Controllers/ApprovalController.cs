@@ -40,7 +40,18 @@ namespace HOC.Controllers
         //}
         public IActionResult Index(string projectId)
         {
-            
+            string UID = this.HttpContext.User.Identity.Name;
+            if (UID != null)
+            {
+                var userProfile = this.context.Users.Find(UID);
+                ViewBag.EmailAddress = userProfile.Uid;
+                ViewBag.UsersName = userProfile.UserName;
+            }
+            else
+            {
+                ViewBag.EmailAddress = "WhatTheHackLCG@gmail.com";
+                ViewBag.UsersName = "Sir What-the-Hack";
+            }
             int id = Int32.Parse(projectId);
             var currentProject = this.context.Projects.First(x => x.Id == id);
             var data = new ApprovalProjectDisplay
@@ -89,9 +100,10 @@ namespace HOC.Controllers
             this.context.SaveChanges();
 
             var message = new JudgeEmailMessage(currentProject.Name, projectStage);
-            new EmailService(emailInfo, message);
+            var emailService = new EmailService(emailInfo, message);
+            emailService.Send();
 
-            return View(@"Approval");
+            return RedirectToAction("Index", "ApprovalsDashboard");
         }
 
         public IActionResult Privacy()
