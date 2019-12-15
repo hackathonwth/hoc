@@ -49,7 +49,7 @@ namespace HOC.Controllers
             }
             else
             {
-                ViewBag.EmailAddress = "WhatTheHackLCG@gmail.com";
+                ViewBag.EmailAddress = "naveen.lanke@lcginc.com";
                 ViewBag.UsersName = "Sir What-the-Hack";
             }
             int id = Int32.Parse(projectId);
