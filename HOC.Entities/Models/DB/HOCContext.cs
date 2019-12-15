@@ -21,6 +21,8 @@ namespace HOC.Entities.Models.DB
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
+        public virtual DbSet<Workflow> Workflow { get; set; }
+
         // Unable to generate entity type for table 'dbo.ProjectAudit'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.Workflow'. Please see the warning messages.
 
@@ -82,6 +84,7 @@ namespace HOC.Entities.Models.DB
                     .HasForeignKey(d => d.ModifiedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Projects_Modified");
+                entity.Property(e => e.WorkflowId).HasColumnName("WorkflowId");
 
                 //entity.HasOne(d => d.Status)
                 //    .WithMany(p => p.Projects)
@@ -159,6 +162,22 @@ namespace HOC.Entities.Models.DB
                     .IsRequired()
                     .HasMaxLength(255);
             });
+
+
+            modelBuilder.Entity<Workflow>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired();
+
+                entity.Property(e => e.EmailAddress)
+                    .IsRequired();
+
+            });
         }
     }
 }
+

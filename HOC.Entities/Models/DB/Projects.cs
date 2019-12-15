@@ -30,7 +30,7 @@ namespace HOC.Entities.Models.DB
         public DateTime ModifiedOn { get; set; }
         public int ModifiedBy { get; set; }
         public ProjectStage Stage { get; set; }
-
+        public int WorkflowId { get; set; }
 
         public Users ApprovedByNavigation { get; set; }
         public Users CreatedByNavigation { get; set; }

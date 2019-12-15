@@ -8,6 +8,7 @@ using System.Web;
 using HOC.Models;
 using HOC.Entities.Models.DB;
 using System.Net.Http;
+using HOC.BusinessService;
 
 namespace HOC.Controllers
 {
@@ -89,6 +90,14 @@ namespace HOC.Controllers
                 //var postTask = client.PostAsJsonAsync<Project>("project", proj);
 
 
+                // Campaign manager notification
+                for (int i = 0; i < proj.WorkflowId; i++)
+                {
+                    var campaignManager = this.context.Workflow.Find(i++);
+                    var emailInfo = new UserEmailInformation(campaignManager.Name, campaignManager.EmailAddress);
+                    var messageInfo = new CampaignManagerNotificationEmail(proj.Name);
+                    new EmailService(emailInfo, messageInfo);
+                }
                 //var result = postTask.Result;
                 //if (result.IsSuccessStatusCode)
                 //{
