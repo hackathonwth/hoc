@@ -13,7 +13,6 @@ namespace HOC.Controllers
 {
     public class OrganizerController : Controller
     {
-        int userID = 1;
 
         private HOCContext context;
 
@@ -23,6 +22,18 @@ namespace HOC.Controllers
             this.context = _context;
 
         }
+
+        int GetUserID
+        {
+            get
+            {
+                int userId = 1;
+                //userID = get it from user session
+
+                return userId;
+            }
+        }
+
 
         // GET: Organizer
         public ActionResult Index()
@@ -48,7 +59,7 @@ namespace HOC.Controllers
         //public ActionResult Create(IFormCollection collection)
         public ActionResult Create(IFormCollection form)
         {
-            Microsoft.Extensions.Primitives.StringValues val1, val2;
+            Microsoft.Extensions.Primitives.StringValues val1, val2, val3, val4;
             try
             {
 
@@ -56,18 +67,21 @@ namespace HOC.Controllers
 
                 form.TryGetValue("ProjectName", out val1);
                 form.TryGetValue("Description", out val2);
+                form.TryGetValue("StartDate", out val3);
+                form.TryGetValue("EndDate", out val4);
 
                 Projects proj = new Projects();
-                proj.CreatedBy = 1;
+                proj.Id = GetTempID;
+                proj.CreatedBy = GetUserID;
                 proj.Name = val1.ToString();
                 proj.Description = val2.ToString();
-                proj.StartDate = DateTime.Today;
-                proj.EndDate = DateTime.Today;
+                proj.StartDate = DateTime.Parse(val3.ToString());
+                proj.EndDate = DateTime.Parse(val4.ToString()); ;
                 proj.ApprovedOn = DateTime.Today;
                 proj.CreatedOn = DateTime.Today;
                 proj.ModifiedOn = DateTime.Today;
-                proj.ApprovedBy = 1;
-                proj.ModifiedBy = 1;
+                proj.ApprovedBy = proj.CreatedBy;
+                proj.ModifiedBy = proj.CreatedBy;
                 this.context.Projects.Add(proj);
                 this.context.SaveChanges();
                 //proj. = 1;
@@ -78,7 +92,7 @@ namespace HOC.Controllers
                 //var result = postTask.Result;
                 //if (result.IsSuccessStatusCode)
                 //{
-                return RedirectToAction("Index");
+                return RedirectToAction("MyProjects");
                 //}
                 //}
 
@@ -90,6 +104,19 @@ namespace HOC.Controllers
             {
                 return View();
             }
+        }
+
+        int GetTempID
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+                string ids = now.Month.ToString() + now.Day.ToString() +
+                    now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
+
+                return int.Parse(ids);
+            }
+
         }
 
         // GET: Organizer/Edit/5
@@ -144,10 +171,13 @@ namespace HOC.Controllers
             return View();
         }
 
-        public ActionResult MyProjects()
+        public IActionResult MyProjects()
         {
+            List<Projects> projects = new List<Projects>();
+                projects = this.context.Projects.ToList();
 
-            return View();
+            
+            return View(projects);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<HOC.Entities.Models.DB.Projects>
 @{
     ViewData["Title"] = "MyProjects";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,69 @@
 
 <h2>MyProjects</h2>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Project Name
+            </th>
+            <th>
+               Created By
+            </th>
+            <th>
+               Date Created
+            </th>
+            <th>
+               Proj Start Date
+            </th>
+            <th>
+                Proj End Date
+            </th>
+            <th>
+               Status
+            </th>
+            <th>
+               Date Approved
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.Display(item.CreatedOn.ToString())
+                </td>
+                <td>
+                    @Html.Display(item.CreatedOn.ToShortDateString())
+                </td>
+                <td>
+                    @Html.Display(item.StartDate.ToShortDateString())
+                </td>
+                <td>
+                    @Html.Display(item.EndDate.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stage)                   
+                </td>
+                <td>
+                    @{
+                        if (item.Stage == HOC.Entities.Models.ProjectStage.Approved)
+                        {
+                            Html.Display(item.ApprovedOn.ToShortDateString());
+                                }
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
