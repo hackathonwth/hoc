@@ -91,7 +91,7 @@ namespace HOC.Controllers
             var message = new JudgeEmailMessage(currentProject.Name, projectStage);
             new EmailService(emailInfo, message);
 
-            return View();
+            return View(@"Approval");
         }
 
         public IActionResult Privacy()

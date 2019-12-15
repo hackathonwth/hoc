@@ -13,7 +13,9 @@ namespace HOC.Models
 
         public CampaignManagerNotificationEmail(string projectName)
         {
-            (string subject, string messageBody) emailDetails;
+            var result = Approve(projectName);
+            subject = result.subject;
+            messageBody = result.messageBody;
 
         }
 

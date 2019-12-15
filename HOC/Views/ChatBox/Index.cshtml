@@ -1,0 +1,35 @@
+﻿@model HOC.Entities.Models.DB.Projects
+
+@{
+    ViewData["Title"] = "ChatBox";
+}
+
+<h2>ChatBox</h2>
+
+<h4>Projects</h4>
+
+@{
+    var parms = new Dictionary<string, string>
+    {
+        { "question", "Text" },
+    };
+}
+<form>
+    @Html.TextArea("Conversation", "", new { @class = "regtext", @style = "width:400px" })
+    <div>
+    @Html.TextBox("Message", "", new { @class = "regtext", @style = "width:400px" })
+    </div>
+    <div>
+    <input type="button" class="btn btn-primary" value="Approve" onclick="location.href='@Url.Action("ChatBox", "Send")'" />
+    </div>
+</form>
+
+ 
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        
+    }
