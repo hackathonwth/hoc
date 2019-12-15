@@ -66,7 +66,9 @@ namespace HOC.Entities.Models.DB
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Stage).HasColumnName("Stage");
-
+                entity.Property(e => e.CurrentStepId).HasColumnName("CurrentStepId");
+                entity.Property(e => e.History).HasColumnName("History");
+                
                 entity.HasOne(d => d.ApprovedByNavigation)
                     .WithMany(p => p.ProjectsApprovedByNavigation)
                     .HasForeignKey(d => d.ApprovedBy)

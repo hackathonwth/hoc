@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HOC.Entities.Models.DB;
+using Microsoft.AspNetCore.Http;
 
 namespace HOC.Controllers
 {
@@ -14,6 +15,7 @@ namespace HOC.Controllers
         private readonly HOCContext _context;
         int currentUserID = 1;
         int CurrentUserRole = 1;
+        int createdBy = 1;
         public DashboardController(HOCContext context)
         {
             _context = context;
@@ -22,15 +24,30 @@ namespace HOC.Controllers
         public IActionResult Index(string UserType, string UserId, string UserEmail)
         {
             List<Projects> projects = new List<Projects>();
+            
+          
             if (UserEmail != null)
             {
                 Users currentLoginUser = _context.Users.Where(x => x.UserName.Contains(UserEmail)).FirstOrDefault();
+
                 if (currentLoginUser.Uid>0)
                 {
-                    currentUserID = currentLoginUser.Uid;
+                  
+                    // set the key value in Cookie
+                            CookieOptions option = new CookieOptions();
+                        option.Expires = DateTime.Now.AddMinutes(10);
+                        Response.Cookies.Append("currentLoginUser", currentLoginUser.Uid.ToString(), option);
+                        currentUserID = currentLoginUser.Uid;
                     UserRoles currentLoginUserRole = _context.UserRoles.Where(x => x.UserId.Equals(currentLoginUser.Uid)).FirstOrDefault();
                     CurrentUserRole = currentLoginUserRole.RoleId;
                 }
+            }
+            else if (Request.Cookies["currentLoginUser"] != null)
+            {
+                string userId = Request.Cookies["currentLoginUser"];
+                currentUserID = Convert.ToInt16(userId);
+                UserRoles currentLoginUserRole = _context.UserRoles.Where(x => x.UserId.Equals(currentUserID)).FirstOrDefault();
+                CurrentUserRole = currentLoginUserRole.RoleId;
             }
             if (CurrentUserRole == 1)
             {
@@ -90,6 +107,11 @@ namespace HOC.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.Cookies["currentLoginUser"] != null)
+                {
+                    string userId = Request.Cookies["currentLoginUser"];
+                    currentUserID = Convert.ToInt16(userId);
+                }
                 projects.CreatedBy = currentUserID;
 
 
@@ -118,6 +140,11 @@ namespace HOC.Controllers
             }
 
             var projects = await _context.Projects.FindAsync(id);
+            createdBy = projects.CreatedBy;
+            CookieOptions option = new CookieOptions();
+            option.Expires = DateTime.Now.AddMinutes(10);
+            Response.Cookies.Append("createdBy", createdBy.ToString(), option);
+            
             if (projects == null)
             {
                 return NotFound();
@@ -134,7 +161,7 @@ namespace HOC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Approved,ApprovedOn,ApprovedBy,StartDate,EndDate,CreatedOn,CreatedBy,ModifiedOn,ModifiedBy,Stage,WorkflowId")] Projects projects)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Approved,ApprovedOn,ApprovedBy,StartDate,EndDate,ModifiedOn,ModifiedBy,Stage,WorkflowId")] Projects projects)
         {
             if (id != projects.Id)
             {
@@ -146,14 +173,25 @@ namespace HOC.Controllers
             {
                 try
                 {
-                    projects.CreatedBy = currentUserID;
+                    //projects.CreatedBy = currentUserID;
 
+                    if (Request.Cookies["currentLoginUser"] != null)
+                    {
+                        string userId = Request.Cookies["currentLoginUser"];
+                        currentUserID = Convert.ToInt16(userId);
+                    }
+                    if (Request.Cookies["createdBy"] != null)
+                    {
+                        string createdById = Request.Cookies["createdBy"];
+                        createdBy = Convert.ToInt16(createdById);
+                    }
 
+                    projects.CreatedBy = createdBy;
                     projects.ApprovedOn = DateTime.Today;
-                    projects.CreatedOn = DateTime.Today;
+                  projects.CreatedOn = DateTime.Today;
                     projects.ModifiedOn = DateTime.Today;
-                    projects.ApprovedBy = projects.CreatedBy;
-                    projects.ModifiedBy = projects.CreatedBy;
+                    projects.ApprovedBy = currentUserID;
+                    projects.ModifiedBy = currentUserID;
                     projects.Stage = Entities.Models.ProjectStage.Pending;
                     _context.Update(projects);
                     await _context.SaveChangesAsync();
