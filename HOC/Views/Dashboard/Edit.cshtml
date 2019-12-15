@@ -23,23 +23,23 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Approved" /> @Html.DisplayNameFor(model => model.Approved)
-                    </label>
-                </div>
+            @*<div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="Approved" /> @Html.DisplayNameFor(model => model.Approved)
+                </label>
             </div>
-            <div class="form-group">
-                <label asp-for="ApprovedOn" class="control-label"></label>
-                <input asp-for="ApprovedOn" class="form-control" />
-                <span asp-validation-for="ApprovedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedBy" class="control-label"></label>
-                <select asp-for="ApprovedBy" class="form-control" asp-items="ViewBag.ApprovedBy"></select>
-                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
-            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApprovedOn" class="control-label"></label>
+            <input asp-for="ApprovedOn" class="form-control" />
+            <span asp-validation-for="ApprovedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApprovedBy" class="control-label"></label>
+            <select asp-for="ApprovedBy" class="form-control" asp-items="ViewBag.ApprovedBy"></select>
+            <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
                 <input asp-for="StartDate" class="form-control" />
@@ -50,33 +50,39 @@
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+            <label asp-for="CreatedOn" class="control-label"></label>
+            <input asp-for="CreatedOn" class="form-control" />
+            <span asp-validation-for="CreatedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="control-label"></label>
+            <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ModifiedOn" class="control-label"></label>
+            <input asp-for="ModifiedOn" class="form-control" />
+            <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ModifiedBy" class="control-label"></label>
+            <select asp-for="ModifiedBy" class="form-control" asp-items="ViewBag.ModifiedBy"></select>
+            <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="Stage" class="control-label"></label>
+            <select asp-for="Stage" class="form-control"></select>
+            <span asp-validation-for="Stage" class="text-danger"></span>
+        </div>*@
+
             <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                <label class="control-label">Workflow</label>
+                <select asp-for="WorkflowId" class="form-control" asp-items="ViewBag.Workflows"></select>
+                <span asp-validation-for="WorkflowId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <select asp-for="CreatedBy" class="form-control" asp-items="ViewBag.CreatedBy"></select>
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedOn" class="control-label"></label>
-                <input asp-for="ModifiedOn" class="form-control" />
-                <span asp-validation-for="ModifiedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedBy" class="control-label"></label>
-                <select asp-for="ModifiedBy" class="form-control" asp-items="ViewBag.ModifiedBy"></select>
-                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Stage" class="control-label"></label>
-                <select asp-for="Stage" class="form-control"></select>
-                <span asp-validation-for="Stage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Publish" class="btn btn-default" />
             </div>
         </form>
     </div>

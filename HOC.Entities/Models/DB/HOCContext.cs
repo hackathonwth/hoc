@@ -175,6 +175,8 @@ namespace HOC.Entities.Models.DB
 
                 entity.Property(e => e.EmailAddress)
                     .IsRequired();
+                entity.Property(e => e.Reviewer)
+                    .IsRequired();
 
             });
         }

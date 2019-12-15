@@ -11,5 +11,6 @@ namespace HOC.Entities.Models
         Rejected = 2,
         Approved = 3,
         Pending = 4,
+        Published =5
     }
 }
