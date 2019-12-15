@@ -25,6 +25,10 @@ namespace HOC.Controllers
             {
                 projects = _context.Projects.ToList();
             }
+            else
+            {
+                projects = _context.Projects.ToList();
+            }
             return View(projects);
         }
 

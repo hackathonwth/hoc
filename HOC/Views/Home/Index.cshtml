@@ -2,153 +2,80 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Hack the OPIOD Crisis</h2>
+
+    </div>
+
+</div>
 <!-- google sign-in button -->
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
-<!-- google sign-out button -->
-<!-- <a href="#" onclick="signOut();"> Sign out of Google Login </a> -->
-<script>function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function() {
-                    console.log('User signed out.');
-                });
-            }</script>
-<!-- amazon sdk js files -->
-<div id="amazon-root"></div>
-<script type="text/javascript">window.onAmazonLoginReady = function() {
-            amazon.Login.setClientID('amzn1.application-oa2-client.fc7ecc78f2fe460da59c26e781b596d4');
 
-            };
-            (function(d) {
-                var a = d.createElement('script'); a.type = 'text/javascript';
-                a.async = true; a.id = 'amazon-login-sdk';
-                a.src = 'https://assets.loginwithamazon.com/sdk/na/login1.js';
-                d.getElementById('amazon-root').appendChild(a);
-            })(document);</script>
+<div id="amazon-root"></div>
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=440939906589350&autoLogAppEvents=1"></script>
 <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
 <span id="cwppButton"></span>
+<!-- google sign-out button -->
+<!-- <a href="#" onclick="signOut();"> Sign out of Google Login </a> -->
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }</script>
+<!-- amazon sdk js files -->
+
+<script type="text/javascript">
+    window.onAmazonLoginReady = function () {
+        amazon.Login.setClientID('amzn1.application-oa2-client.fc7ecc78f2fe460da59c26e781b596d4');
+
+    };
+    (function (d) {
+        var a = d.createElement('script'); a.type = 'text/javascript';
+        a.async = true; a.id = 'amazon-login-sdk';
+        a.src = 'https://assets.loginwithamazon.com/sdk/na/login1.js';
+        d.getElementById('amazon-root').appendChild(a);
+    })(document);</script>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=440939906589350&autoLogAppEvents=1"></script>
+
 <script src='https://www.paypalobjects.com/js/external/connect/api.js'></script>
-<script>paypal.use( ['login'], function (login) {
-               login.render ({
+<script>
+    paypal.use(['login'], function (login) {
+        login.render({
 
-                   "appid": "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0nmc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutlW5R9T",
-                   "scopes": "openid",
-                   "containerid": "cwppButton",
-                   "responseType": "code",
-                   "locale" : "en-us",
-                   "buttonShape" : "pill",
-                   "buttonSize" : "lg",
-                   "fullPage" : "true",
+            "appid": "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0nmc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutlW5R9T",
+            "scopes": "openid",
+            "containerid": "cwppButton",
+            "responseType": "code",
+            "locale": "en-us",
+            "buttonShape": "pill",
+            "buttonSize": "lg",
+            "fullPage": "true",
 
-                   "returnurl": "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0nmc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutlW5R9T"
-               });
-               });</script>
-       
+            "returnurl": "AcZc69KaanPjNntpwVS43SVYayJHKJd23iuH0nmc55AtIVPR7aw7QSJjONz3Scwx3DSwWhyYutlW5R9T"
+        });
+    });</script>
+
 <a href id="LoginWithAmazon">
     <img border="0" alt="Login with Amazon"
          src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png" width="156" height="32" />
 </a>
 <!-- AuthorizeRequest object after Amazon button -->
-<script type="text/javascript">document.getElementById('LoginWithAmazon').onclick = function() {
-               options = {}
-               options.scope = 'profile';
-               options.scope_data = {
-                   'profile' : {'essential' : false}
+<script type="text/javascript">
+    document.getElementById('LoginWithAmazon').onclick = function () {
+        options = {}
+        options.scope = 'profile';
+        options.scope_data = {
+            'profile': { 'essential': false }
 
-               };
-               amazon.Login.authorize(options,
-               'https://hoc.azurewebsites.net');
-               return false;
-           };</script>
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+        };
+        amazon.Login.authorize(options,
+            'https://hoc.azurewebsites.net');
+        return false;
+    };</script>

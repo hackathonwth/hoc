@@ -23,8 +23,24 @@ namespace HOC.Controllers
             this.context = _context;
             
         }
+        //public IActionResult Index(string projectId)
+        //{
+        //    int id = Int32.Parse(projectId);
+        //    var currentProject = this.context.Projects.First(x => x.Id == id);
+        //    var data = new ApprovalProjectDisplay
+        //        (
+        //            currentProject.Name,
+        //            currentProject.Description,
+        //            currentProject.StartDate,
+        //            currentProject.EndDate,
+        //            currentProject.Stage
+        //        );
+        //    ViewBag.Id = projectId;
+        //    return View(data);
+        //}
         public IActionResult Index(string projectId)
         {
+            
             int id = Int32.Parse(projectId);
             var currentProject = this.context.Projects.First(x => x.Id == id);
             var data = new ApprovalProjectDisplay
